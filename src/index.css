@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Asimovian&family=Licorice&family=Poppins&family=Playwrite+US+Modern:wght@100..400&display=swap");
+@import "tailwindcss";
+
+body {
+  background: #000000;
+  color: white;
+  font-family: Poppins;
+}
+
+@layer components {
+  .glitch-link {
+    @apply relative text-white/80 transition-all duration-500 ease-in-out no-underline;
+  }
+
+  .glitch-link::before,
+  .glitch-link::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    max-width: 100%;
+    white-space: nowrap;
+    color: #ffffff;
+    transition: all 0.5s ease;
+  }
+
+  .glitch-link::before {
+    clip-path: inset(0 100% 0 0);
+    text-shadow: 2px 0 #ff00e1, -2px 0 #00f3ff;
+  }
+
+  .glitch-link::after {
+    clip-path: inset(0 0 0 100%);
+    text-shadow: 0 2px #ff00e1, 0 -2px #00f3ff;
+  }
+
+  .glitch-link:hover {
+    text-shadow: 2px 0 #ff00e1, -2px 0 #00f3ff, 0 2px #ff00e1, 0 -2px #00f3ff;
+  }
+
+  .glitch-link:hover::before,
+  .glitch-link:hover::after {
+    clip-path: inset(0 0 0 0);
+  }
+}
