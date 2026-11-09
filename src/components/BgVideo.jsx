@@ -1,17 +1,20 @@
 import React from "react";
-import particles2 from "../assets/particles2.mp4";
-const BgVideo = () => {
+import particles4 from "../assets/particles4.mp4";
+
+const BgVideo = ({ videoSrc = particles4 }) => {
   return (
-    <>
+    <div className="fixed inset-0 w-full h-full pointer-events-none overflow-hidden -z-20">
       <video
-        className="fixed top-0 left-0 w-full h-full object-cover -z-20 opacity-100 "
-        src={particles2}
+        className="w-full h-full object-cover opacity-60 scale-105 transition-opacity duration-700"
+        src={videoSrc}
         autoPlay
         muted
         loop
         playsInline
-      ></video>
-    </>
+      />
+      {/* Dark gradient overlay for text readability & cyberpunk ambiance */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/95 pointer-events-none" />
+    </div>
   );
 };
 
