@@ -172,7 +172,7 @@ const Contact = () => {
                 </a>
                 <span className="text-zinc-600">/</span>
                 <a
-                  href="https://leetcode.com/u/tanqdev/"
+                  href="https://leetcode.com/u/print_tan/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors flex items-center gap-0.5"

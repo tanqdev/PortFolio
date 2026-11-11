@@ -178,7 +178,7 @@ const Hero = () => {
               <Github size={22} />
             </a>
             <a
-              href="https://leetcode.com/u/tanqdev/"
+              href="https://leetcode.com/u/print_tan/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LeetCode Profile (500+ Solved)"
