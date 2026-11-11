@@ -4,6 +4,8 @@
 html {
   scroll-behavior: smooth;
   background-color: #000000;
+  /* Prevent iOS momentum-scroll stutter */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -11,6 +13,8 @@ body {
   color: #ffffff;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
+  /* Keep scrollbar always visible → prevents width-shift repaints */
+  overflow-y: scroll;
 }
 
 /* Custom font utilities */
@@ -37,65 +41,9 @@ body {
   animation: scroll 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
-/* Vertical Text Transition Keyframes */
-@keyframes textSlideOutUp {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes textSlideInUp {
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.animate-text-slide-out-up {
-  animation: textSlideOutUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-text-slide-in-up {
-  animation: textSlideInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-text-slide-out-up {
-    animation: textFadeOut 0.3s ease-out forwards !important;
-  }
-  .animate-text-slide-in-up {
-    animation: textFadeIn 0.3s ease-out forwards !important;
-  }
-  @keyframes textFadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes textFadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-}
-
 @layer components {
   .glitch-link {
-    @apply relative text-white/80 transition-all duration-300 ease-in-out no-underline;
+    @apply relative text-zinc-300 transition-all duration-300 ease-in-out no-underline;
   }
 
   .glitch-link::before,
@@ -121,12 +69,16 @@ body {
     text-shadow: 0 2px #ff00e1, 0 -2px #00f3ff;
   }
 
-  .glitch-link:hover {
+  .glitch-link:hover,
+  .glitch-link.active {
+    color: #ffffff;
     text-shadow: 2px 0 #ff00e1, -2px 0 #00f3ff, 0 2px #ff00e1, 0 -2px #00f3ff;
   }
 
   .glitch-link:hover::before,
-  .glitch-link:hover::after {
+  .glitch-link:hover::after,
+  .glitch-link.active::before,
+  .glitch-link.active::after {
     clip-path: inset(0 0 0 0);
   }
 }

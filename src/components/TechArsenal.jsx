@@ -19,11 +19,10 @@ const TechArsenal = () => {
       name: "FRONTEND",
       dotColor: "bg-cyan-400",
       skills: [
-        { name: "React", descriptor: "Component Archetypes" },
-        { name: "Next.js", descriptor: "App Router / SSR" },
+        { name: "React.js", descriptor: "Component Systems" },
         { name: "Tailwind CSS", descriptor: "Utility Architecture" },
-        { name: "Responsive UX", descriptor: "Micro-interactions" },
-        { name: "Web APIs", descriptor: "DOM & Event Loop" },
+        { name: "HTML5", descriptor: "Semantic Structure" },
+        { name: "CSS3", descriptor: "Responsive Layouts" },
       ],
     },
     {

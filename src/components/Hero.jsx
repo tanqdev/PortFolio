@@ -1,30 +1,121 @@
-import React, { useState, useEffect } from "react";
-import { Linkedin, Github, PhoneCall } from "lucide-react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { Linkedin, Github, Code2, PhoneCall } from "lucide-react";
 import As from "../assets/AntiSpiral.png";
+
+// Unicode pixel blocks ordered by visual density
+const PIXEL_BLOCKS = ["█", "▓", "▒", "░", "■", "▀", "▄", "▌", "▐", "▖", "▗", "▘", "▙", "▚", "▛", "▜", "▝", "▞", "▟"];
+const PIXEL_DISSOLVE_DURATION = 1100; // Duration in ms for prominent pixel transition
+const CYCLE_INTERVAL = 3800;          // Cycle interval in ms
+
+function usePixelatedText(initialText) {
+  const [display, setDisplay] = useState(initialText);
+  const [isPixelating, setIsPixelating] = useState(false);
+  const rafRef = useRef(null);
+  const startRef = useRef(null);
+  const prevTextRef = useRef(initialText);
+
+  const transitionTo = useCallback((targetText) => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    startRef.current = null;
+    setIsPixelating(true);
+
+    const sourceText = prevTextRef.current;
+    const maxLen = Math.max(sourceText.length, targetText.length);
+
+    const step = (timestamp) => {
+      if (!startRef.current) startRef.current = timestamp;
+      const elapsed = timestamp - startRef.current;
+      const progress = Math.min(elapsed / PIXEL_DISSOLVE_DURATION, 1);
+
+      // Phase 1 (0.00 - 0.35): Current text dissolves into chaotic pixel blocks
+      if (progress < 0.35) {
+        const dissolveProgress = progress / 0.35;
+        const result = sourceText
+          .padEnd(maxLen, " ")
+          .split("")
+          .map((ch) => {
+            if (ch === " ") return " ";
+            if (Math.random() < dissolveProgress * 0.95 + 0.05) {
+              return PIXEL_BLOCKS[Math.floor(Math.random() * PIXEL_BLOCKS.length)];
+            }
+            return ch;
+          })
+          .join("");
+        setDisplay(result);
+      }
+      // Phase 2 (0.35 - 1.00): Target text crystallizes from pixel blocks left-to-right
+      else {
+        const buildProgress = (progress - 0.35) / 0.65;
+        const resolvedCount = Math.floor(buildProgress * targetText.length);
+
+        const result = targetText
+          .split("")
+          .map((ch, i) => {
+            if (ch === " ") return " ";
+            if (i < resolvedCount) {
+              return ch; // Solid clean letter
+            }
+            if (i === resolvedCount) {
+              return "█"; // Glowing leading pixel cursor
+            }
+            if (i <= resolvedCount + 3) {
+              // Dense trailing pixel blocks near the cursor
+              return PIXEL_BLOCKS[Math.floor(Math.random() * 4)];
+            }
+            // Fainter background pixel noise
+            return PIXEL_BLOCKS[Math.floor(Math.random() * PIXEL_BLOCKS.length)];
+          })
+          .join("");
+
+        setDisplay(result);
+      }
+
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      } else {
+        setDisplay(targetText);
+        prevTextRef.current = targetText;
+        setIsPixelating(false);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  return { display, isPixelating, transitionTo };
+}
 
 const Hero = () => {
   const statements = [
-    "I am a Full-Stack Developer",
+    "A Full-Stack Developer",
     "Experienced in Backend Engineering",
     "Worked with AI & Machine Learning",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(null);
+  const { display, isPixelating, transitionTo } = usePixelatedText(statements[0]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPrevIndex(currentIndex);
-      setCurrentIndex((prev) => (prev + 1) % statements.length);
-    }, 4000);
+      const next = (currentIndex + 1) % statements.length;
+      setCurrentIndex(next);
+      transitionTo(statements[next]);
+    }, CYCLE_INTERVAL);
 
     return () => clearInterval(interval);
-  }, [currentIndex, statements.length]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentIndex, transitionTo]);
 
   return (
     <section
       id="home"
-      className="relative min-h-[calc(100vh-4rem)] flex flex-col justify-between items-center py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+      className="relative min-h-screen flex flex-col justify-between items-center pt-24 sm:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
     >
       <div className="w-full flex-1 flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-12 lg:gap-16 my-auto">
         {/* Left Column - Intro & Headings with Continuous Animated Statement */}
@@ -42,28 +133,23 @@ const Hero = () => {
             </h1>
           </div>
 
-          {/* Animated Text Sequence (Slide-up & Fade every 4s, Zero Layout Shift) */}
+          {/* Pixelated Text Sequence — retro digital block dissolve every 3.8s */}
           <div
-            className="h-8 sm:h-10 md:h-12 relative overflow-hidden flex items-center justify-center md:justify-start mb-6"
+            className="h-8 sm:h-10 md:h-12 relative flex items-center justify-center md:justify-start mb-6"
             aria-live="polite"
             aria-atomic="true"
+            aria-label={statements[currentIndex]}
           >
-            {prevIndex !== null && (
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 flex items-center justify-center md:justify-start text-lg sm:text-2xl md:text-3xl font-extrabold text-gray-300 whitespace-nowrap animate-text-slide-out-up select-none pointer-events-none"
-              >
-                {statements[prevIndex]}
-              </div>
-            )}
-            <div
-              onAnimationEnd={() => setPrevIndex(null)}
-              className={`absolute inset-0 flex items-center justify-center md:justify-start text-lg sm:text-2xl md:text-3xl font-extrabold text-gray-300 whitespace-nowrap ${
-                prevIndex !== null ? "animate-text-slide-in-up" : ""
+            <span
+              aria-hidden="true"
+              className={`text-lg sm:text-2xl md:text-3xl font-extrabold whitespace-nowrap font-mono-code select-none transition-all duration-100 ${
+                isPixelating
+                  ? "text-white tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                  : "text-gray-300 tracking-tight"
               }`}
             >
-              {statements[currentIndex]}
-            </div>
+              {display}
+            </span>
           </div>
 
           {/* Social Links & CTA */}
@@ -85,6 +171,16 @@ const Hero = () => {
               className="p-2.5 border border-zinc-700 hover:border-white rounded-lg hover:bg-white hover:text-black transition-all duration-300 text-zinc-200"
             >
               <Github size={22} />
+            </a>
+            <a
+              href="https://leetcode.com/u/tanqdev/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LeetCode Profile (500+ Solved)"
+              title="LeetCode Profile (500+ Solved)"
+              className="p-2.5 border border-zinc-700 hover:border-white rounded-lg hover:bg-white hover:text-black transition-all duration-300 text-zinc-200"
+            >
+              <Code2 size={22} />
             </a>
             <a
               href="#contact"

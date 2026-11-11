@@ -3,6 +3,7 @@ import { Copy, Check } from "lucide-react";
 
 const Contact = () => {
   const [copied, setCopied] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -10,6 +11,7 @@ const Contact = () => {
     message: "",
   });
   const [sentStatus, setSentStatus] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const emailAddress = "srivastavatanishq142@gmail.com";
 
@@ -19,13 +21,64 @@ const Contact = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSentStatus("DISPATCH QUEUED");
-    setTimeout(() => {
-      setSentStatus("DISPATCH TRANSMITTED");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1200);
+    setIsSubmitting(true);
+    setSentStatus("TRANSMITTING...");
+    setStatusMessage("");
+
+    try {
+      const response = await fetch(
+        `https://formsubmit.co/ajax/${emailAddress}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            _subject: `New Portfolio Dispatch: ${formData.subject || "Collaboration Inquiry"}`,
+            subject: formData.subject,
+            message: formData.message,
+            _replyto: formData.email,
+            _template: "table",
+            _captcha: "false",
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (response.ok && (data.success === "true" || data.success === true)) {
+        setSentStatus("DISPATCH DELIVERED ✓");
+        setStatusMessage("Message sent! A copy has been delivered to your inbox.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => {
+          setSentStatus("");
+          setStatusMessage("");
+        }, 6000);
+      } else {
+        throw new Error(data.message || "Dispatch delivery failed");
+      }
+    } catch {
+      // Fallback directly to mailto so the sender's message is never lost
+      const mailtoUrl = `mailto:${emailAddress}?subject=${encodeURIComponent(
+        formData.subject || "Portfolio Collaboration Dispatch"
+      )}&body=${encodeURIComponent(
+        `From: ${formData.name} (${formData.email})\n\nMessage:\n${formData.message}`
+      )}`;
+      window.location.href = mailtoUrl;
+      setSentStatus("DISPATCH QUEUED IN MAIL CLIENT ✓");
+      setStatusMessage("Redirected to your email client to send directly.");
+      setTimeout(() => {
+        setSentStatus("");
+        setStatusMessage("");
+      }, 6000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -119,7 +172,18 @@ const Contact = () => {
                 </a>
                 <span className="text-zinc-600">/</span>
                 <a
-                  href="#resume"
+                  href="https://leetcode.com/u/tanqdev/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors flex items-center gap-0.5"
+                >
+                  LeetCode ↗
+                </a>
+                <span className="text-zinc-600">/</span>
+                <a
+                  href="/Tanishq_Srivastava_Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-white transition-colors flex items-center gap-0.5"
                 >
                   Resume ↗
@@ -195,18 +259,27 @@ const Contact = () => {
             </div>
 
             {/* Submit Action & Telemetry */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4">
-              <button
-                type="submit"
-                className="px-8 py-3.5 bg-white text-black font-mono font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 transition-colors cursor-pointer self-start flex items-center gap-2"
-              >
-                <span>{sentStatus || "SEND DISPATCH"}</span>
-                <span>→</span>
-              </button>
+            <div className="flex flex-col gap-3 pt-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-8 py-3.5 bg-white text-black font-mono font-bold text-xs uppercase tracking-wider hover:bg-zinc-200 transition-colors cursor-pointer self-start flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span>{sentStatus || "SEND DISPATCH"}</span>
+                  <span>{isSubmitting ? "···" : "→"}</span>
+                </button>
 
-              <span className="text-xs text-zinc-300 font-mono font-medium">
-                Average response: &lt; 24h
-              </span>
+                <span className="text-xs text-zinc-300 font-mono font-medium">
+                  Average response: &lt; 24h
+                </span>
+              </div>
+
+              {statusMessage && (
+                <p className="text-xs font-mono text-emerald-400 mt-1 animate-fade-in">
+                  {statusMessage}
+                </p>
+              )}
             </div>
           </form>
         </div>

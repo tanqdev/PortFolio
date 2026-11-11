@@ -13,9 +13,11 @@ const App = () => {
       {/* Abstract Background Layer (z-0) */}
       <AbstractBackground />
 
+      {/* Permanently Fixed Floating Navbar (z-50) */}
+      <Navbar />
+
       {/* Foreground Content Layer (z-10) */}
       <div className="relative z-10">
-        <Navbar />
         <main>
           <Hero />
           <About />
