@@ -134,7 +134,7 @@ const Work = () => {
                 {/* Bracket Links */}
                 <div className="flex items-center gap-4 text-xs font-mono">
                   <a
-                    href="https://github.com/tanqdev/Acheter"
+                    href="https://acheterhub.vercel.app/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:text-indigo-300 font-medium transition-colors"
@@ -142,7 +142,7 @@ const Work = () => {
                     [ Live Demo ↗ ]
                   </a>
                   <a
-                    href="https://acheterhub.vercel.app/"
+                    href="https://github.com/tanqdev/Acheter"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white hover:text-indigo-300 font-medium transition-colors"
