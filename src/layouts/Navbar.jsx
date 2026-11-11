@@ -129,12 +129,11 @@ const Navbar = () => {
                     <a
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`glitch-link block py-2.5 px-4 text-sm font-mono uppercase tracking-wider rounded-xl transition-colors ${
+                      className={`block py-2.5 px-4 text-sm font-mono uppercase tracking-wider rounded-xl transition-colors ${
                         isActive
-                          ? "active font-bold bg-white/[0.05]"
-                          : "text-zinc-300 hover:text-white hover:bg-zinc-900/60"
+                          ? "text-white font-bold bg-white/[0.07]"
+                          : "text-zinc-400 hover:text-white hover:bg-zinc-900/60"
                       }`}
-                      data-text={link.name}
                     >
                       {link.name}
                     </a>
