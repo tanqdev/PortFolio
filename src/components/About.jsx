@@ -11,7 +11,7 @@ const About = () => {
       </div>
 
       {/* Main Punchy Headline */}
-      <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.12] max-w-5xl mb-16">
+      <h2 className="text-2xl sm:text-4xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] max-w-5xl mb-10 sm:mb-16">
         Bridging scalable backend architecture with intuitive, precision-crafted interfaces.
       </h2>
 

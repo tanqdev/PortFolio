@@ -90,7 +90,7 @@ const Contact = () => {
         <span>COLLABORATION</span>
       </div>
 
-      <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.05] uppercase mb-16 max-w-4xl">
+      <h2 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] uppercase mb-12 sm:mb-16 max-w-4xl">
         Let's build something <br /> together.
       </h2>
 
@@ -208,7 +208,7 @@ const Contact = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="Alex Chen"
-                  className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-sm text-white placeholder-zinc-500 outline-none transition-colors"
+                  className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-base sm:text-sm text-white placeholder-zinc-500 outline-none transition-colors"
                 />
               </div>
 
@@ -223,7 +223,7 @@ const Contact = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="alex@domain.com"
-                  className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-sm text-white placeholder-zinc-500 outline-none transition-colors"
+                  className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-base sm:text-sm text-white placeholder-zinc-500 outline-none transition-colors"
                 />
               </div>
             </div>
@@ -239,7 +239,7 @@ const Contact = () => {
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 placeholder="Project collaboration / internship opportunity"
-                className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-sm text-white placeholder-zinc-500 outline-none transition-colors"
+                className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-base sm:text-sm text-white placeholder-zinc-500 outline-none transition-colors"
               />
             </div>
 
@@ -254,7 +254,7 @@ const Contact = () => {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Hi Tanishq, we are building..."
-                className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-sm text-white placeholder-zinc-500 outline-none transition-colors resize-none"
+                className="w-full bg-transparent border-b border-zinc-700 focus:border-white py-2 text-base sm:text-sm text-white placeholder-zinc-500 outline-none transition-colors resize-none"
               />
             </div>
 

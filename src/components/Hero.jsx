@@ -125,26 +125,26 @@ const Hero = () => {
           </h1>
 
           <div className="relative inline-block mb-4">
-            <h1 className="absolute top-2 left-2 text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-violet-500 z-0 select-none">
+            <h1 className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-violet-500 z-0 select-none">
               Tanishq <br /> Srivastava
             </h1>
-            <h1 className="relative text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-white z-10">
+            <h1 className="relative text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-white z-10">
               Tanishq <br /> Srivastava
             </h1>
           </div>
 
           {/* Pixelated Text Sequence — retro digital block dissolve every 3.8s */}
           <div
-            className="h-8 sm:h-10 md:h-12 relative flex items-center justify-center md:justify-start mb-6"
+            className="min-h-[2.25rem] sm:h-10 md:h-12 relative flex items-center justify-center md:justify-start mb-6"
             aria-live="polite"
             aria-atomic="true"
             aria-label={statements[currentIndex]}
           >
             <span
               aria-hidden="true"
-              className={`text-lg sm:text-2xl md:text-3xl font-extrabold whitespace-nowrap font-mono-code select-none transition-all duration-100 ${
+              className={`text-sm sm:text-xl md:text-2xl lg:text-3xl font-extrabold font-mono-code select-none transition-all duration-100 ${
                 isPixelating
-                  ? "text-white tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                  ? "text-white tracking-wider sm:tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                   : "text-gray-300 tracking-tight"
               }`}
             >
@@ -153,7 +153,7 @@ const Hero = () => {
           </div>
 
           {/* Social Links & CTA */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 sm:gap-4">
             <a
               href="https://www.linkedin.com/in/tanishqdev-srivastava/"
               target="_blank"
@@ -198,7 +198,7 @@ const Hero = () => {
         </div>
 
         {/* Right Column - Pure AntiSpiral Visual (Zero hover, zero colorful glow) */}
-        <div className="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center select-none">
+        <div className="w-full max-w-[200px] sm:max-w-[300px] md:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center select-none">
           <img
             src={As}
             alt="AntiSpiral Graphic"

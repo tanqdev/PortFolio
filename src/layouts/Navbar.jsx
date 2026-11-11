@@ -54,7 +54,7 @@ const Navbar = () => {
   return (
     <div className="fixed top-3 sm:top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
       <nav
-        className="pointer-events-auto w-full max-w-5xl rounded-full border border-white/[0.12] bg-[#030303]/85 backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.7)] px-5 sm:px-8 py-2.5 sm:py-3 transition-all duration-300"
+        className="pointer-events-auto w-full max-w-5xl rounded-full border border-white/[0.12] bg-[#030303]/85 backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.7)] px-4 sm:px-8 py-2 sm:py-3 transition-all duration-300"
         style={{ contain: "layout paint" }}
       >
         <div className="flex justify-between items-center">

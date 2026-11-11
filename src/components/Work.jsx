@@ -19,7 +19,7 @@ const Work = () => {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex items-center gap-6 font-mono text-xs tracking-wider">
+        <div className="flex items-center gap-4 sm:gap-6 font-mono text-xs tracking-wider overflow-x-auto pb-1 max-w-full">
           <button
             onClick={() => setActiveTab("ALL")}
             className={`pb-1 cursor-pointer transition-colors relative ${
@@ -88,7 +88,7 @@ const Work = () => {
                   </p>
 
                   {/* Spec 2x2 Grid with High-Contrast Text */}
-                  <div className="grid grid-cols-2 gap-4 py-4 border-t border-b border-zinc-800 text-xs font-mono mb-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 py-4 border-t border-b border-zinc-800 text-xs font-mono mb-6">
                     <div>
                       <span className="text-zinc-400 block text-[10px] uppercase">DATABASE</span>
                       <span className="text-white font-medium">PostgreSQL + Prisma</span>
@@ -149,7 +149,7 @@ const Work = () => {
                   </div>
 
                   {/* Top Stats 3-Grid */}
-                  <div className="grid grid-cols-3 gap-3 mb-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
                     <div className="p-3 rounded border border-zinc-800 bg-zinc-950/80">
                       <span className="text-zinc-400 text-[10px] block uppercase font-medium">TOTAL GMV</span>
                       <span className="text-white text-base sm:text-lg font-bold block my-0.5">$42,910.00</span>
