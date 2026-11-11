@@ -52,16 +52,16 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="fixed top-3 sm:top-5 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <div className="fixed top-3 sm:top-5 inset-x-0 z-50 flex justify-center px-3 sm:px-4 pointer-events-none">
       <nav
-        className="pointer-events-auto w-full max-w-5xl rounded-full border border-white/[0.12] bg-[#030303]/85 backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.7)] px-4 sm:px-8 py-2 sm:py-3 transition-all duration-300"
+        className="pointer-events-auto w-full max-w-5xl rounded-full border border-white/[0.12] bg-[#030303]/85 backdrop-blur-xl shadow-[0_10px_35px_rgba(0,0,0,0.7)] px-3 sm:px-8 py-2 sm:py-3 transition-all duration-300"
         style={{ contain: "layout paint" }}
       >
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-2">
           {/* Logo */}
           <a
             href="#home"
-            className="text-xl sm:text-2xl font-light font-[Playwrite_US_Modern] tracking-wider text-white hover:text-indigo-400 transition-colors"
+            className="text-base sm:text-2xl font-light font-[Playwrite_US_Modern] tracking-wider text-white hover:text-indigo-400 transition-colors shrink-0"
           >
             Tanishq
           </a>
@@ -89,16 +89,16 @@ const Navbar = () => {
           </div>
 
           {/* Right Action & Mobile Toggle */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="/Tanishq_Srivastava_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View Resume PDF"
-              className="relative overflow-hidden flex items-center px-4 py-1.5 sm:py-2 text-xs font-mono font-semibold border border-zinc-600 hover:border-white rounded-full cursor-pointer gap-2 transition-all duration-300 group hover:bg-white hover:text-black text-white bg-zinc-950/60"
+              className="relative overflow-hidden flex items-center px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs font-mono font-semibold border border-zinc-600 hover:border-white rounded-full cursor-pointer gap-1.5 sm:gap-2 transition-all duration-300 group hover:bg-white hover:text-black text-white bg-zinc-950/60"
             >
-              <Download size={13} className="z-10" />
-              <span className="z-10">Resume</span>
+              <Download size={13} className="z-10 shrink-0" />
+              <span className="z-10 hidden xs:inline sm:inline">Resume</span>
               <span className="absolute inset-0 bg-white translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></span>
             </a>
 

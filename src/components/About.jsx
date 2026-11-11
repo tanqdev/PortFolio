@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <section id="about" className="relative py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800">
+    <section id="about" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800">
       {/* Category / Subtitle */}
       <div className="text-indigo-400 font-mono tracking-widest text-xs uppercase mb-6 flex items-center gap-2">
         <span>01</span>

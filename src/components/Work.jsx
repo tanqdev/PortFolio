@@ -4,7 +4,7 @@ const Work = () => {
   const [activeTab, setActiveTab] = useState("ALL");
 
   return (
-    <section id="works" className="relative py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800">
+    <section id="works" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800">
       {/* Category / Subtitle */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div>
@@ -13,7 +13,7 @@ const Work = () => {
             <span className="text-zinc-600">/</span>
             <span>FEATURED REPERTOIRE</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Selected Works.
           </h2>
         </div>

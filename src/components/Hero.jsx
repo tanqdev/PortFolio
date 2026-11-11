@@ -115,36 +115,41 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-between items-center pt-24 sm:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+      className="relative min-h-screen flex flex-col justify-between items-center pt-20 sm:pt-32 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-x-hidden"
     >
-      <div className="w-full flex-1 flex flex-col-reverse md:flex-row items-center justify-between gap-10 md:gap-12 lg:gap-16 my-auto">
+      <div className="w-full flex-1 flex flex-col-reverse md:flex-row items-center justify-between gap-6 md:gap-12 lg:gap-16 my-auto">
         {/* Left Column - Intro & Headings with Continuous Animated Statement */}
-        <div className="text-center md:text-left flex-1 max-w-2xl">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-300 mb-2">
+        <div className="text-center md:text-left flex-1 w-full min-w-0">
+          <h1 className="text-xl sm:text-3xl font-extrabold text-gray-300 mb-2">
             Hi, I am
           </h1>
 
-          <div className="relative inline-block mb-4">
-            <h1 className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-violet-500 z-0 select-none">
+          {/* Name block: overflow-hidden clips the absolute violet shadow layer */}
+          <div className="relative overflow-hidden mb-4 w-full">
+            <h1 className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-violet-500 z-0 select-none whitespace-nowrap">
               Tanishq <br /> Srivastava
             </h1>
-            <h1 className="relative text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-white z-10">
+            <h1 className="relative text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-white z-10 whitespace-nowrap">
+              Tanishq <br /> Srivastava
+            </h1>
+            {/* Spacer so the parent is tall enough to contain both stacked h1s */}
+            <h1 className="invisible text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold select-none" aria-hidden="true">
               Tanishq <br /> Srivastava
             </h1>
           </div>
 
           {/* Pixelated Text Sequence — retro digital block dissolve every 3.8s */}
           <div
-            className="min-h-[2.25rem] sm:h-10 md:h-12 relative flex items-center justify-center md:justify-start mb-6"
+            className="min-h-[2rem] sm:h-10 md:h-12 relative flex items-center justify-center md:justify-start mb-6 overflow-hidden"
             aria-live="polite"
             aria-atomic="true"
             aria-label={statements[currentIndex]}
           >
             <span
               aria-hidden="true"
-              className={`text-sm sm:text-xl md:text-2xl lg:text-3xl font-extrabold font-mono-code select-none transition-all duration-100 ${
+              className={`text-xs sm:text-xl md:text-2xl lg:text-3xl font-extrabold font-mono-code select-none transition-all duration-100 max-w-full block truncate ${
                 isPixelating
-                  ? "text-white tracking-wider sm:tracking-widest drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                  ? "text-white tracking-wide drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"
                   : "text-gray-300 tracking-tight"
               }`}
             >
@@ -197,8 +202,8 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Column - Pure AntiSpiral Visual (Zero hover, zero colorful glow) */}
-        <div className="w-full max-w-[200px] sm:max-w-[300px] md:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center select-none">
+        {/* Right Column - Pure AntiSpiral Visual */}
+        <div className="w-[140px] sm:w-[260px] md:w-[380px] lg:w-[440px] flex-shrink-0 aspect-square flex items-center justify-center select-none">
           <img
             src={As}
             alt="AntiSpiral Graphic"

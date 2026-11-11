@@ -6,6 +6,8 @@ html {
   background-color: #000000;
   /* Prevent iOS momentum-scroll stutter */
   -webkit-overflow-scrolling: touch;
+  /* Stop any element from causing horizontal overflow */
+  overflow-x: hidden;
 }
 
 body {

@@ -82,7 +82,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800">
+    <section id="contact" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800 overflow-x-hidden">
       {/* Category / Subtitle */}
       <div className="text-indigo-400 font-mono tracking-widest text-xs uppercase mb-2 flex items-center gap-2">
         <span>04</span>
@@ -90,7 +90,7 @@ const Contact = () => {
         <span>COLLABORATION</span>
       </div>
 
-      <h2 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] uppercase mb-12 sm:mb-16 max-w-4xl">
+      <h2 className="text-2xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] uppercase mb-10 sm:mb-16 max-w-4xl">
         Let's build something <br /> together.
       </h2>
 
@@ -105,7 +105,7 @@ const Contact = () => {
               </span>
               <a
                 href={`mailto:${emailAddress}`}
-                className="text-lg sm:text-xl font-bold text-white hover:text-indigo-300 transition-colors block mt-1"
+                className="text-sm sm:text-lg font-bold text-white hover:text-indigo-300 transition-colors block mt-1 break-all"
               >
                 {emailAddress}
               </a>
@@ -152,7 +152,7 @@ const Contact = () => {
               <span className="text-xs font-mono tracking-widest text-zinc-300 uppercase block mb-2 font-semibold">
                 NETWORKS
               </span>
-              <div className="flex items-center gap-3 text-sm font-mono text-zinc-200">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-mono text-zinc-200">
                 <a
                   href="https://github.com/tanqdev"
                   target="_blank"
@@ -286,7 +286,7 @@ const Contact = () => {
       </div>
 
       {/* Footer */}
-      <div className="pt-12 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400">
+      <div className="pt-10 sm:pt-12 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400 text-center sm:text-left">
         <div className="flex items-center gap-3">
           <span className="text-xl font-light font-[Playwrite_US_Modern] text-white">
             Tanishq

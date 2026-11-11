@@ -52,7 +52,7 @@ const TechArsenal = () => {
   ];
 
   return (
-    <section id="skills" className="relative py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800">
+    <section id="skills" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-12 max-w-7xl mx-auto border-t border-zinc-800">
       {/* Category / Subtitle */}
       <div className="text-indigo-400 font-mono tracking-widest text-xs uppercase mb-2 flex items-center gap-2">
         <span>03</span>
@@ -60,7 +60,7 @@ const TechArsenal = () => {
         <span>SYSTEMS TAXONOMY</span>
       </div>
 
-      <h2 className="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-16">
+      <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight mb-10 sm:mb-16">
         Tech Arsenal &amp; Capabilities.
       </h2>
 
