@@ -124,18 +124,18 @@ const Hero = () => {
             Hi, I am
           </h1>
 
-          {/* Name block: overflow-hidden clips the absolute violet shadow layer */}
-          <div className="relative overflow-hidden mb-4 w-full">
-            <h1 className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-violet-500 z-0 select-none whitespace-nowrap">
-              Tanishq <br /> Srivastava
-            </h1>
-            <h1 className="relative text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-white z-10 whitespace-nowrap">
-              Tanishq <br /> Srivastava
-            </h1>
-            {/* Spacer so the parent is tall enough to contain both stacked h1s */}
-            <h1 className="invisible text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold select-none" aria-hidden="true">
-              Tanishq <br /> Srivastava
-            </h1>
+          {/* Name block — inline-block so shadow offsets align with text naturally.
+              The flex wrapper handles centering on mobile / left-align on desktop.
+              Section overflow-x-hidden clips the 2px shadow bleed. */}
+          <div className="flex justify-center md:justify-start mb-4">
+            <div className="relative inline-block">
+              <h1 className="absolute top-1.5 left-1.5 sm:top-2 sm:left-2 text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-violet-500 z-0 select-none">
+                Tanishq <br /> Srivastava
+              </h1>
+              <h1 className="relative text-[2.4rem] leading-tight sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-white z-10">
+                Tanishq <br /> Srivastava
+              </h1>
+            </div>
           </div>
 
           {/* Pixelated Text Sequence — retro digital block dissolve every 3.8s */}
